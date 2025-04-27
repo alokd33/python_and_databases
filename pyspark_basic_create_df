@@ -1,0 +1,105 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, udf
+from pyspark.sql.types import StringType
+import sys
+
+def create_spark_session():
+    """
+    Initialize and return a Spark session.
+    """
+    return SparkSession.builder \
+        .appName("PySpark UDF and SQL Example") \
+        .master("local[*]") \
+        .getOrCreate()
+
+def create_dataframes(spark):
+    """
+    Create and return two example DataFrames.
+    """
+    df1 = spark.createDataFrame([
+        (1, "Alice", "HR"),
+        (2, "Bob", "IT"),
+        (3, "Charlie", "Finance"),
+        (4, "David", "IT"),
+    ], ["id", "name", "department"])
+
+    df2 = spark.createDataFrame([
+        (1, 50000),
+        (2, 60000),
+        (3, 55000),
+        (4, 52000),
+    ], ["id", "salary"])
+
+    return df1, df2
+
+def join_dataframes(df1, df2):
+    """
+    Join two DataFrames on 'id' and return the result.
+    """
+    return df1.join(df2, on="id", how="inner")
+
+def register_uppercase_udf(spark):
+    """
+    Define and register a UDF to uppercase a name.
+    """
+    def to_upper(text):
+        return text.upper() if text else ""
+    upper_udf = udf(to_upper, StringType())
+    spark.udf.register("to_upper", upper_udf)
+    return upper_udf
+
+def apply_sql_with_in_and_udf(spark, df, departments):
+    """
+    Register the DataFrame as a temp view and run SQL query using IN clause.
+    """
+    df.createOrReplaceTempView("employees")
+    dept_str = ",".join([f"'{d}'" for d in departments])  # convert to 'HR','IT'
+    query = f"""
+        SELECT id, to_upper(name) AS name_upper, department, salary
+        FROM employees
+        WHERE department IN ({dept_str})
+    """
+    return spark.sql(query)
+
+def main():
+    """
+    Main function that executes the pipeline.
+    """
+    try:
+        spark = create_spark_session()
+        print("✅ Spark session started")
+
+        df1, df2 = create_dataframes(spark)
+        joined_df = join_dataframes(df1, df2)
+
+        upper_udf = register_uppercase_udf(spark)
+        joined_df = joined_df.withColumn("name_upper", upper_udf(col("name")))
+
+        departments = ["HR", "IT"]
+        final_df = apply_sql_with_in_and_udf(spark, joined_df, departments)
+        final_df.show()
+
+        return final_df, spark
+
+    except Exception as e:
+        print("❌ Exception in main():", str(e))
+        sys.exit(1)
+
+# ----------------------------------------
+# Post-Main Logic (further processing)
+# ----------------------------------------
+if __name__ == "__main__":
+    final_df, spark = main()
+
+    try:
+        print("\n🔄 Post-processing: Filter salary > 55000")
+        high_salary_df = final_df.filter(col("salary") > 55000)
+        high_salary_df.show()
+
+        print("📊 Department-wise count")
+        final_df.groupBy("department").count().show()
+
+        spark.stop()
+
+    except Exception as e:
+        print("❌ Exception in post-processing:", str(e))
