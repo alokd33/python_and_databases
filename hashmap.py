@@ -11,6 +11,11 @@ Core Operations and Their Time Complexity:
 
 How Hash Table Works:
 --------------------
+# Example with table size 4
+   hash("name") % 4 = 1
+   hash("age") % 4 = 1
+   hash("city") % 4 = 2
+
 1. Hash Function:
    - Takes a key and converts it to an index
    - Example: hash("name") % table_size = index
