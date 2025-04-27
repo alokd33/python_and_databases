@@ -46,6 +46,45 @@ d.items()                        # Get all items
 d.copy()                         # Shallow copy
 len(d)                           # Number of items
 
+If your dictionary is... | Use
+Flat (no nested dict/list) | copy()
+Nested (contains dict inside dict, or lists) | deepcopy()
+
+# Safe flat copy
+new_dict = old_dict.copy()
+
+# Safe deep independent copy
+import copy
+new_dict = copy.deepcopy(old_dict)
+
+
+import copy
+
+original = {'a': 1, 'b': {'c': 2}}
+shallow_copy = original.copy()
+
+shallow_copy['a'] = 100   # Only affects shallow_copy
+shallow_copy['b']['c'] = 200  # Affects both shallow_copy and original!
+
+print(original)
+# Output: {'a': 1, 'b': {'c': 200}}  --> See? b['c'] changed in original too!
+
+import copy
+
+original = {'a': 1, 'b': {'c': 2}}
+deep_copy = copy.deepcopy(original)
+
+deep_copy['a'] = 100   # Only affects deep_copy
+deep_copy['b']['c'] = 200  # Only affects deep_copy
+
+print(original)
+# Output: {'a': 1, 'b': {'c': 2}}  --> Original fully preserved
+
+
+
+
+
+
 # 4. Dictionary Views
 # ==================
 keys = d.keys()                  # Keys view
