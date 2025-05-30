@@ -2365,13 +2365,75 @@ print(merge_intervals([[1,3],[2,6],[8,10],[15,18]]))
 
 def is_valid_parentheses(s: str) -> bool:
     """
-    Checks if the string has valid parentheses.
+    Determines if the input string has valid matching parentheses.
 
-    Args:
-    s (str): A string containing only '(', ')', '{', '}', '[' and ']'.
+    A valid string must meet the following conditions:
+    - Every opening bracket must have a corresponding closing bracket of the same type.
+    - Brackets must be closed in the correct order (e.g., "([])" is valid, but "(]" is not).
 
-    Returns:
-    bool: True if the parentheses are valid, False otherwise.
+    Parameters
+    ----------
+    s : str
+        A string containing only the characters '(', ')', '{', '}', '[' and ']'.
+
+    Returns
+    -------
+    bool
+        True if the parentheses are valid and balanced, False otherwise.
+
+    Method Summary
+    --------------
+    - We use a stack to track unmatched opening brackets.
+    - We use a dictionary (mapping) to check which closing bracket corresponds to which opening bracket.
+    - For each character in the string:
+        1. If it is a closing bracket:
+            - Pop the top element of the stack (if any).
+            - Compare it with the expected opening bracket using the `mapping`.
+            - If it does not match, return False.
+        2. If it is an opening bracket:
+            - Push it onto the stack.
+    - If, after processing all characters, the stack is empty, return True. Otherwise, return False.
+
+    Core Loop with Example
+    -----------------------
+    Let's say: s = "({[]})"
+
+    Initial stack: []
+
+    Looping through each character:
+
+    for char in s:
+        if char in mapping:
+            # If it's a closing bracket, pop the top of the stack (if available)
+            top = stack.pop() if stack else '#'
+
+            # Check if the popped bracket matches the expected opening bracket
+            if mapping[char] != top:
+                return False
+        else:
+            # If it's an opening bracket, push it onto the stack
+            stack.append(char)
+
+    Step-by-step:
+    - char = '(': push → stack = ['(']
+    - char = '{': push → stack = ['(', '{']
+    - char = '[': push → stack = ['(', '{', '[']
+    - char = ']': pop '[' → matches → stack = ['(', '{']
+    - char = '}': pop '{' → matches → stack = ['(']
+    - char = ')': pop '(' → matches → stack = []
+
+    Stack is empty → return True
+
+    Example Usages
+    --------------
+    >>> is_valid_parentheses("()[]{}")
+    True
+
+    >>> is_valid_parentheses("(]")
+    False
+
+    >>> is_valid_parentheses("({[]})")
+    True
     """
     stack = []
     mapping = {')': '(', '}': '{', ']': '['}
@@ -2385,6 +2447,7 @@ def is_valid_parentheses(s: str) -> bool:
             stack.append(char)
 
     return not stack
+
 
 print(is_valid_parentheses("()[]{}"))  # Output: True
 print(is_valid_parentheses("(]"))      # Output: False
