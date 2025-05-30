@@ -1963,3 +1963,2192 @@ def switch_case(value):
         'case2': lambda: 'result2',
         'case3': lambda: 'result3'
     }.get(value, lambda: 'default')()
+
+def charcount(str1): 
+    """
+    input : abcabc 
+    output :a2b3c3 
+    """
+    d1 = {}
+    for i in str1:
+        if i in d1 : 
+            d1[i] = d1[i] + 1
+        else : 
+            d1[i] = 1
+    return "".join([str(k)+str(v) for k,v in d1.items()])
+
+# str1 = "abcabc"
+# #str1 = "111111111"
+# a = charcount(str1)
+# print(a)
+
+# loops type
+
+a = [1,2,3,5,"a", 5]
+a.append(6)
+print(a)
+
+a.insert(1, 0)
+print(a)
+
+b = a.pop()
+print(b, a)
+
+print ("5 count is", a.count(5)) 
+print ("5 index is", a.index(5))
+
+a.reverse()
+c = a.reverse()
+print ("d reserved the list", c)
+
+a.reverse()
+
+d = {"a": 1, "b": 2, "c": 3}
+#print(d)
+
+# str1 = "abcabc"
+# #str1 = "111111111"
+# a = charcount(str1)
+# print(a)
+
+def charcount(str1):
+    d = {}
+    for i in str1 : 
+        if i in d : 
+            d[i] = d[i] + 1
+        else : 
+            d[i] = 1 
+    str2 = "".join([(str(k)+str(v)) for k,v in d.items()])
+    return str2
+     
+str1 = "abcabc"
+#str1 = "111111111"
+a = charcount(str1)
+print(a)
+
+def isvalid_brackets(str1): 
+    d = {}
+    open_bracket = ("{", "[", ")")
+    end_bracket = ("}", "]", ")")
+
+
+def reverse_string(s: str) -> str:
+    """
+    Reverses the input string.
+
+    Args:
+    s (str): The string to be reversed.
+
+    Returns:
+    str: The reversed string.
+    """
+    return s[::-1]
+
+print(reverse_string("hello"))  # Output: "olleh"
+
+
+def is_prime(n: int) -> bool:
+    """
+    Checks if the given number is prime.
+
+    Args:
+    n (int): The number to be checked.
+
+    Returns:
+    bool: True if n is prime, False otherwise.
+    """
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+print(is_prime(7))  # Output: True
+
+def find_largest(numbers: list) -> int:
+    """
+    Returns the largest number from the list.
+
+    Args:
+    numbers (list): A list of numbers.
+
+    Returns:
+    int: The largest number in the list.
+    """
+    return max(numbers)
+
+print(find_largest([1, 2, 3, 4, 5]))  # Output: 5
+
+squares = [x**2 for x in range(1, 11) if x % 2 == 0]
+print(squares)  # Output: [4, 16, 36, 64, 100]
+
+#Write a lambda function that multiplies a number by 2.
+multiply_by_two = lambda x: x * 2
+
+# Write a function that divides two numbers and handles division by zero.
+
+def divide(a: float, b: float) -> float:
+    """
+    Divides a by b and handles division by zero.
+
+    Args:
+    a (float): The numerator.
+    b (float): The denominator.
+
+    Returns:
+    float: The result of the division, or None if division by zero occurs.
+    """
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
+
+print(divide(10, 2))  # Output: 5.0
+print(divide(10, 0))  # Output: None
+
+# Write a decorator that prints the arguments of a function before calling it.
+
+def print_args(func):
+    """
+    Decorator that prints function arguments before calling the function.
+
+    Args:
+    func (function): The function to be decorated.
+
+    Returns:
+    function: The decorated function.
+    """
+    def wrapper(*args, **kwargs):
+        print(f"Arguments: {args}, {kwargs}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@print_args
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Alice"))  # Output: Arguments: ('Alice',), {} \n Hello, Alice!
+
+
+#Write a generator that yields numbers from 1 to 5.
+
+def count_up_to_five():
+    """
+    Generator that yields numbers from 1 to 5.
+
+    Yields:
+    int: Numbers from 1 to 5.
+    """
+    for i in range(1, 6):
+        yield i
+
+for number in count_up_to_five():
+    print(number)
+
+#Explain the Global Interpreter Lock (GIL) in Python.
+
+"""The GIL is a mutex that protects access to Python objects, preventing multiple threads from 
+    executing Python bytecode simultaneously. This means that even in a multi-threaded program, 
+    only one thread can execute Python code at a time. The GIL can be a bottleneck in CPU-bound programs but
+    is less of an issue for I/O-bound programs.
+"""
+#What is PEP 8 and why is it important
+
+# Solution:
+# PEP 8 is the style guide for Python code, covering formatting conventions such as indentation,
+#     naming conventions, and code layout. Following PEP 8 improves code readability and consistency, 
+# making it easier for developers to collaborate and maintain codebases.
+
+# 1. Two Sum
+# Problem:Given an array of integers nums and an integer target, return the 
+# indices of the two numbers such that they add up to target
+
+
+# Common imports for advanced or specialized data structures
+from collections import (
+    deque,             # Double-ended queue (used as stack/queue)
+    Counter,           # Frequency map
+    defaultdict,       # Dict with default factory
+    OrderedDict,       # Remember insertion order (useful for LRU)
+    namedtuple         # Lightweight class-like tuple
+)
+from heapq import heappush, heappop, heapify  # Min-heap (priority queue)
+from queue import Queue, LifoQueue, PriorityQueue  # Thread-safe queues
+from array import array  # Space-efficient array of uniform type
+from typing import List, Dict, Set, Tuple, Any  # For type hinting
+from collections.abc import Iterable, Iterator  # For OOP/data modeling
+
+def two_sum(nums: List[int], target: int) -> List[int]:
+    """
+    Finds two indices in the list 'nums' such that their values add up to 'target'.
+
+    Args:
+    nums (List[int]): A list of integers.
+    target (int): The target sum.
+
+    Returns:
+    List[int]: A list containing the indices of the two numbers.
+    """
+    num_map = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            return [num_map[complement], i]
+        num_map[num] = i
+    return []
+print(two_sum([2, 7, 11, 15], 9))  # Output: [0, 1]
+
+# 2. Add Two Numbers
+# Problem:
+# You are given two non-empty linked lists representing two non-negative integers. 
+# The digits are stored in reverse order,
+# and each of their nodes contains a single digit. Add the two numbers and return it as a linked list.
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Adds two numbers represented by linked lists 'l1' and 'l2'.
+
+    Args:
+    l1 (ListNode): The first linked list.
+    l2 (ListNode): The second linked list.
+
+    Returns:
+    ListNode: The sum of the two numbers as a linked list.
+    """
+    dummy = ListNode()
+    current = dummy
+    carry = 0
+    while l1 or l2 or carry:
+        val1 = l1.val if l1 else 0
+        val2 = l2.val if l2 else 0
+        total = val1 + val2 + carry
+        carry = total // 10
+        current.next = ListNode(total % 10)
+        current = current.next
+        if l1: l1 = l1.next
+        if l2: l2 = l2.next
+    return dummy.next
+
+# Example usage requires creating ListNode instances for l1 and l2
+
+# 3. Longest Substring Without Repeating Characters
+# Problem:
+# Given a string s, find the length of the longest substring without repeating characters.
+# Coding Interview Pro
+# +1
+# Medium
+# +1
+
+# Solution:
+
+def length_of_longest_substring(s: str) -> int:
+    """
+    Finds the length of the longest substring without repeating characters.
+
+    Args:
+    s (str): The input string.
+
+    Returns:
+    int: The length of the longest substring.
+    """
+    char_map = {}
+    start = max_length = 0
+    for end, char in enumerate(s):
+        if char in char_map and char_map[char] >= start:
+            start = char_map[char] + 1
+        char_map[char] = end
+        max_length = max(max_length, end - start + 1)
+    return max_length
+
+print(length_of_longest_substring("abcabcbb"))  # Output: 3
+
+
+# 4. Median of Two Sorted Arrays
+# Problem:
+# Given two sorted arrays nums1 and nums2 of size m and n respectively, find the median of the two sorted arrays.
+
+# Solution:
+
+def find_median_sorted_arrays(nums1: List[int], nums2: List[int]) -> float:
+    """
+    Finds the median of two sorted arrays 'nums1' and 'nums2'.
+
+    Args:
+    nums1 (List[int]): The first sorted array.
+    nums2 (List[int]): The second sorted array.
+
+    Returns:
+    float: The median of the two sorted arrays.
+    """
+    nums = sorted(nums1 + nums2)
+    n = len(nums)
+    if n % 2 == 0:
+        return (nums[n // 2 - 1] + nums[n // 2]) / 2
+    else:
+        return nums[n // 2]
+    
+print(find_median_sorted_arrays([1, 3], [2]))  # Output: 2.0
+
+# 5. Longest Palindromic Substring
+# Problem:
+# Given a string s, return the longest palindromic substring in s.
+
+# Solution:
+def longest_palindromic_substring(s: str) -> str:
+    """
+    Finds the longest palindromic substring in 's'.
+
+    Args:
+    s (str): The input string.
+
+    Returns:
+    str: The longest palindromic substring.
+    """
+    def expand_around_center(left: int, right: int) -> str:
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return s[left + 1:right]
+
+    longest = ""
+    for i in range(len(s)):
+        odd_palindrome = expand_around_center(i, i)
+        even_palindrome = expand_around_center(i, i + 1)
+        longest = max(longest, odd_palindrome, even_palindrome, key=len)
+    return longest
+
+print(longest_palindromic_substring("babad"))  # Output: "bab" or "aba"
+
+# 6. Merge Intervals
+# Problem:
+# Given a collection of intervals, merge any overlapping intervals.
+
+# Solution:
+
+def merge_intervals(intervals: List[List[int]]) -> List[List[int]]:
+    """
+    Merges overlapping intervals from the input list.
+
+    Args:
+    intervals (List[List[int]]): A list of intervals [start, end].
+
+    Returns:
+    List[List[int]]: The merged list of intervals.
+    """
+    if not intervals:
+        return []
+    
+    intervals.sort(key=lambda x: x[0])
+    merged = [intervals[0]]
+
+    for current in intervals[1:]:
+        last = merged[-1]
+        if current[0] <= last[1]:
+            last[1] = max(last[1], current[1])
+        else:
+            merged.append(current)
+    return merged
+print(merge_intervals([[1,3],[2,6],[8,10],[15,18]]))
+# Output: [[1,6],[8,10],[15,18]]
+
+ 
+# 7. Valid Parentheses
+# Problem:
+# Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+# Solution:
+
+def is_valid_parentheses(s: str) -> bool:
+    """
+    Checks if the string has valid parentheses.
+
+    Args:
+    s (str): A string containing only '(', ')', '{', '}', '[' and ']'.
+
+    Returns:
+    bool: True if the parentheses are valid, False otherwise.
+    """
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in mapping:
+            top = stack.pop() if stack else '#'
+            if mapping[char] != top:
+                return False
+        else:
+            stack.append(char)
+
+    return not stack
+
+print(is_valid_parentheses("()[]{}"))  # Output: True
+print(is_valid_parentheses("(]"))      # Output: False
+
+# 8. Search in Rotated Sorted Array
+# Problem:
+# Given the array nums which is sorted and then rotated, return the index of the target if found, or -1.
+
+# Solution:
+
+def search(nums: List[int], target: int) -> int:
+    """
+    Searches target in a rotated sorted array.
+
+    Args:
+    nums (List[int]): The rotated sorted array.
+    target (int): The value to search.
+
+    Returns:
+    int: The index of target if found, otherwise -1.
+    """
+    left, right = 0, len(nums) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        else:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+    return -1
+
+print(search([4,5,6,7,0,1,2], 0))  # Output: 4
+
+# 9. Container With Most Water
+# Problem:
+# Given n non-negative integers representing height, find two lines that 
+# together with the x-axis form a container that holds the most water
+
+def max_area(height: List[int]) -> int:
+    """
+    Finds the max area of water that can be trapped between two lines.
+
+    Args:
+    height (List[int]): A list of heights.
+
+    Returns:
+    int: The maximum area.
+    """
+    left, right = 0, len(height) - 1
+    max_area = 0
+
+    while left < right:
+        area = min(height[left], height[right]) * (right - left)
+        max_area = max(max_area, area)
+
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+
+    return max_area
+
+print(max_area([1,8,6,2,5,4,8,3,7]))  # Output: 49
+
+# 10. Binary Tree Level Order Traversal
+# Problem:
+# Given the root of a binary tree, return its level order traversal (i.e., values at each level from left to right).
+
+# Solution:
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        """
+        Initializes a binary tree node.
+
+        Args:
+        val (int): The value of the node.
+        left (TreeNode, optional): Left child node.
+        right (TreeNode, optional): Right child node.
+        """
+        self.val = val
+        self.left = left
+        self.right = right
+
+def level_order(root: TreeNode) -> List[List[int]]:
+    """
+    Performs level-order traversal (BFS) on a binary tree without using any imports.
+
+    Args:
+    root (TreeNode): The root node of the binary tree.
+
+    Returns:
+    List[List[int]]: A list where each sublist contains the values of nodes at each level.
+    """
+    if not root:
+        return []
+
+    result = []
+    queue = [root]
+
+    while queue:
+        level_size = len(queue)
+        level_values = []
+
+        for i in range(level_size):
+            current = queue.pop(0)
+            level_values.append(current.val)
+
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+
+        result.append(level_values)
+
+    return result
+
+# Constructing the binary tree:
+#     3
+#    / \
+#   9  20
+#      / \
+#     15  7
+
+root = TreeNode(3)
+root.left = TreeNode(9)
+root.right = TreeNode(20, TreeNode(15), TreeNode(7))
+print(level_order(root))
+# Output: [[3], [9, 20], [15, 7]]
+
+
+
+
+# 1. Maximum Depth of a Binary Tree
+# Problem:
+# Given a binary tree, find its maximum depth. 
+# The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        """
+        Initializes a binary tree node.
+
+        Args:
+        val (int): The value of the node.
+        left (TreeNode, optional): Left child node.
+        right (TreeNode, optional): Right child node.
+        """
+        self.val = val
+        self.left = left
+        self.right = right
+
+def max_depth(root: TreeNode) -> int:
+    """
+    Computes the maximum depth of a binary tree.
+
+    Args:
+    root (TreeNode): The root node of the binary tree.
+
+    Returns:
+    int: The maximum depth of the tree.
+    """
+    if not root:
+        return 0
+    left_depth = max_depth(root.left)
+    right_depth = max_depth(root.right)
+    return max(left_depth, right_depth) + 1
+
+
+# Constructing the binary tree:
+#     3
+#    / \
+#   9  20
+#      / \
+#     15  7
+
+root = TreeNode(3)
+root.left = TreeNode(9)
+root.right = TreeNode(20, TreeNode(15), TreeNode(7))
+
+print(max_depth(root))  # Output: 3
+
+# 2. Lowest Common Ancestor of a Binary Tree
+# Problem:
+# Given a binary tree and two nodes, find their lowest common ancestor (LCA). The LCA is defined as the lowest node in the tree that has both nodes as descendants.
+
+# Solution:
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        """
+        Initializes a binary tree node.
+
+        Args:
+        val (int): The value of the node.
+        left (TreeNode, optional): Left child node.
+        right (TreeNode, optional): Right child node.
+        """
+        self.val = val
+        self.left = left
+        self.right = right
+
+def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    """
+    Finds the lowest common ancestor of two nodes in a binary tree.
+
+    Args:
+    root (TreeNode): The root node of the binary tree.
+    p (TreeNode): The first node.
+    q (TreeNode): The second node.
+
+    Returns:
+    TreeNode: The lowest common ancestor of the two nodes.
+    """
+    if not root or root == p or root == q:
+        return root
+    left = lowest_common_ancestor(root.left, p, q)
+    right = lowest_common_ancestor(root.right, p, q)
+    if left and right:
+        return root
+    return left if left else right
+
+# Constructing the binary tree:
+#     3
+#    / \
+#   5   1
+#  / \ / \
+# 6  2 0  8
+#   / \
+#  7   4
+
+root = TreeNode(3)
+root.left = TreeNode(5, TreeNode(6), TreeNode(2, TreeNode(7), TreeNode(4)))
+root.right = TreeNode(1, TreeNode(0), TreeNode(8))
+
+p = root.left  # Node 5
+q = root.left.right.right  # Node 4
+
+print(lowest_common_ancestor(root, p, q).val)  # Output: 5
+
+
+# 3. Binary Tree Zigzag Level Order Traversal
+# Problem:
+# Given a binary tree, return the zigzag level order traversal of its nodes' 
+# values. (i.e., from left to right, then right to left for the next level and alternate between).
+
+# Solution:
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        """
+        Initializes a binary tree node.
+
+        Args:
+        val (int): The value of the node.
+        left (TreeNode, optional): Left child node.
+        right (TreeNode, optional): Right child node.
+        """
+        self.val = val
+        self.left = left
+        self.right = right
+
+def zigzag_level_order(root: TreeNode) -> List[List[int]]:
+    """
+    Performs a zigzag level order traversal of a binary tree.
+
+    Args:
+    root (TreeNode): The root node of the binary tree.
+
+    Returns:
+    List[List[int]]: A list of lists representing the zigzag level order traversal.
+    """
+    if not root:
+        return []
+
+    result, level, direction = [], [root], 1
+
+    while level:
+        current_vals = [node.val for node in level]
+        if direction == -1:
+            current_vals.reverse()
+        result.append(current_vals)
+
+        direction *= -1
+        next_level = []
+        for node in level:
+            if node.left:
+                next_level.append(node.left)
+            if node.right:
+                next_level.append(node.right)
+        level = next_level
+
+    return result
+
+# Constructing the binary tree:
+#     3
+#    / \
+#   9  20
+#     /  \
+#    15   7
+
+root = TreeNode(3)
+root.left = TreeNode(9)
+root.right = TreeNode(20, TreeNode(15), TreeNode(7))
+
+print(zigzag_level_order(root))  
+# Output: [[3], [20, 9], [15, 7]]
+
+
+# 3. Group Anagrams
+# Problem:
+# Given an array of strings, group the anagrams together.
+
+# Solution:
+
+def group_anagrams(strs: List[str]) -> List[List[str]]:
+    """
+    Groups anagrams from the given list of strings.
+
+    Args:
+    strs (List[str]): The input list of strings.
+
+    Returns:
+    List[List[str]]: A list of groups where each group contains anagrams.
+    """
+    anagram_map = {}  # Dictionary to store sorted word as key and list of words as value
+
+    for word in strs:
+        key = ''.join(sorted(word))  # Sort the characters of the word
+        if key in anagram_map:
+            anagram_map[key].append(word)
+        else:
+            anagram_map[key] = [word]
+
+    return list(anagram_map.values())
+
+words = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(group_anagrams(words))
+# Possible output: [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+
+# 1. Find the First Repeating Element in an Array
+# Problem:
+# Given an integer array, find the first repeating element.
+# Medium
+
+# Solution:
+
+def find_first_repeating(arr):
+    """
+    Finds the first repeating element in an array.
+
+    Args:
+    arr (List[int]): The input array.
+
+    Returns:
+    int: The first repeating element, or None if no such element exists.
+    """
+    seen = set()
+    for num in arr:
+        if num in seen:
+            return num
+        seen.add(num)
+    return None
+
+print(find_first_repeating([1, 2, 3, 4, 5, 6, 7, 8, 9, 1]))  # Output: 1
+
+
+# 2. Find the Union of Two Arrays
+# Problem:
+# Given two integer arrays, find the union of the two arrays.
+
+# Solution:
+def find_union(arr1, arr2):
+    """
+    Finds the union of two arrays.
+
+    Args:
+    arr1 (List[int]): The first input array.
+    arr2 (List[int]): The second input array.
+
+    Returns:
+    List[int]: A list containing the union of the two arrays.
+    """
+    return list(set(arr1) | set(arr2))
+print(find_union([1, 2, 3, 4], [3, 4, 5, 6]))  # Output: [1, 2, 3, 4, 5, 6]
+
+
+# 3. Find the Intersection of Two Arrays
+# Problem:
+# Given two integer arrays, find the intersection of the two arrays.
+
+# Solution:
+
+def find_intersection(arr1, arr2):
+    """
+    Finds the intersection of two arrays.
+
+    Args:
+    arr1 (List[int]): The first input array.
+    arr2 (List[int]): The second input array.
+
+    Returns:
+    List[int]: A list containing the intersection of the two arrays.
+    """
+    return list(set(arr1) & set(arr2))
+
+print(find_intersection([1, 2, 3, 4], [3, 4, 5, 6]))  # Output: [3, 4]
+
+
+# 1. Swap Two Variables Using Tuple Packing/Unpacking
+# Problem:
+# Swap the values of two variables without using a temporary variable. Use tuple unpacking to achieve this.
+
+# Constraints:
+
+# Inputs are integers.
+
+def swap(a: int, b: int) -> Tuple[int, int]:
+    """
+    Swaps two integers using tuple packing and unpacking.
+
+    Args:
+    a (int): First integer.
+    b (int): Second integer.
+
+    Returns:
+    Tuple[int, int]: A tuple containing the swapped values (b, a).
+    """
+    a, b = b, a
+    return a, b
+
+print(swap(5, 10))  # Output: (10, 5)
+
+
+# 2. Find the Tuple with Maximum Sum from a List of Tuples
+# Problem:
+# Given a list of tuples where each tuple contains integers, return the tuple whose elements sum to the largest value.
+
+# Constraints:
+
+# The list will contain at least one tuple.
+
+# Tuples can contain any number of integers (1 or more).
+
+
+
+from typing import List, Tuple, Dict
+
+def count_tuple_frequency(tuples_list: List[Tuple]) -> Dict[Tuple, int]:
+    """
+    Counts the frequency of each tuple in the given list.
+
+    Args:
+        tuples_list (List[Tuple]): List of tuples.
+
+    Returns:
+        Dict[Tuple, int]: Dictionary mapping each tuple to its frequency.
+    """
+    frequency = {}
+    for t in tuples_list:
+        frequency[t] = frequency.get(t, 0) + 1
+    return frequency
+
+# Test
+print(count_tuple_frequency([(1, 2), (3, 4), (1, 2), (0, 5), (3, 4), (3, 4)]))
+# Output: {(1, 2): 2, (3, 4): 3, (0, 5): 1}
+
+
+# Test
+# print(max_sum_tuple([(1, 2), (3, 4), (0, 5)]))  # Output: (3, 4)
+
+
+
+# 3. Count Frequency of Tuples in a List
+# Problem:
+# Given a list of tuples, count how many times each tuple appears and return a dictionary mapping each tuple to its frequency.
+
+# Constraints:
+
+# The list can contain any number of tuples (including duplicates).
+
+# Tuples can contain any types of hashable elements.
+
+def count_tuple_frequency(tuples_list: List[Tuple]) -> Dict[Tuple, int]:
+    """
+    Counts the frequency of each tuple in the given list.
+
+    Args:
+    tuples_list (List[tuple]): List of tuples.
+
+    Returns:
+    dict[tuple, int]: Dictionary mapping each tuple to its frequency.
+    """
+    frequency = {}
+    for t in tuples_list:
+        if t in frequency:
+            frequency[t] += 1
+        else:
+            frequency[t] = 1
+    return frequency
+
+print(count_tuple_frequency([(1, 2), (3, 4), (1, 2), (5, 6)]))
+# Output: {(1, 2): 2, (3, 4): 1, (5, 6): 1}
+
+# 1. Merge Two Dictionaries
+# Problem:
+# Given two dictionaries, merge them into a single dictionary. If keys overlap, values from the second dictionary should override those from the first.
+
+# Function Signature:
+
+def merge_dicts(dict1: dict, dict2: dict) -> dict:
+    """
+    Merges two dictionaries. If keys overlap, values from dict2 override dict1.
+
+    Args:
+    dict1 (dict): The first dictionary.
+    dict2 (dict): The second dictionary.
+
+    Returns:
+    dict: The merged dictionary.
+    """
+    merged = dict1.copy()
+    merged.update(dict2)
+    return merged
+
+print(merge_dicts({'a': 1, 'b': 2}, {'b': 3, 'c': 4}))
+# Output: {'a': 1, 'b': 3, 'c': 4}
+
+# 2. Count Frequency of Characters in a String
+# Problem:
+# Given a string, count the frequency of each character using a dictionary.
+
+# Function Signature:
+
+def char_frequency(s: str) -> dict:
+    """
+    Counts the frequency of each character in the string.
+
+    Args:
+    s (str): Input string.
+
+    Returns:
+    dict: Dictionary with characters as keys and their frequencies as values.
+    """
+    freq = {}
+    for char in s:
+        freq[char] = freq.get(char, 0) + 1
+    return freq
+print(char_frequency("hello"))
+# Output: {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+
+# 3. Find the Key with Maximum Value in a Dictionary
+# Problem:
+# Given a dictionary, find the key that has the maximum value.
+
+# Function Signature:
+def key_with_max_value(d: dict) -> any:
+    """
+    Returns the key with the maximum value in the dictionary.
+
+    Args:
+    d (dict): Input dictionary.
+
+    Returns:
+    any: Key with the highest value.
+    """
+    if not d:
+        return None
+    max_key = max(d, key=d.get)
+    return max_key
+print(key_with_max_value({'a': 5, 'b': 12, 'c': 7}))
+# Output: 'b'
+
+# 4. Invert a Dictionary (Swap Keys and Values)
+# Problem:
+# Given a dictionary, invert it by swapping keys and values. Assume all values are unique and hashable.
+
+# Function Signature:
+def invert_dict(d: dict) -> dict:
+    """
+    Inverts the dictionary by swapping keys and values.
+
+    Args:
+    d (dict): Input dictionary with unique values.
+
+    Returns:
+    dict: Inverted dictionary with values as keys and keys as values.
+    """
+    return {v: k for k, v in d.items()}
+
+# 5. Check if Two Dictionaries are Equal
+# Problem:
+# Write a function to check if two dictionaries are equal (same keys and values).
+
+# Function Signature:
+def are_dicts_equal(d1: dict, d2: dict) -> bool:
+    """
+    Checks if two dictionaries are equal.
+
+    Args:
+    d1 (dict): First dictionary.
+    d2 (dict): Second dictionary.
+
+    Returns:
+    bool: True if both dictionaries are equal, False otherwise.
+    """
+    return d1 == d2
+print(are_dicts_equal({'a': 1, 'b': 2}, {'b': 2, 'a': 1}))
+# Output: True
+print(are_dicts_equal({'a': 1}, {'a': 2}))
+# Output: False
+
+
+# 1. Implement a Python Class with Getters and Setters
+# Problem:
+# Create a class Person with private attributes name and age.
+# Implement getter and setter methods for these attributes to ensure encapsulation.
+class Person:
+    def __init__(self, name: str, age: int):
+        self.__name = name
+        self.__age = age
+
+    def get_name(self) -> str:
+        """Returns the name of the person."""
+        return self.__name
+
+    def set_name(self, name: str):
+        """Sets the name of the person."""
+        self.__name = name
+
+    def get_age(self) -> int:
+        """Returns the age of the person."""
+        return self.__age
+
+    def set_age(self, age: int):
+        """Sets the age of the person."""
+        if age >= 0:
+            self.__age = age
+        else:
+            raise ValueError("Age cannot be negative.")
+
+p = Person("Alice", 30)
+print(p.get_name())  # Output: Alice
+p.set_age(31)
+print(p.get_age())   # Output: 31
+
+
+# 2. Implement a Class Method and Static Method
+# Problem:
+# Create a class Circle that keeps track of the number of circle instances created.
+#  Implement a class method to get this count and a static method to calculate the area of a circle given its radius.
+import math
+
+class Circle:
+    count = 0
+
+    def __init__(self, radius: float):
+        self.radius = radius
+        Circle.count += 1
+
+    @classmethod
+    def get_count(cls) -> int:
+        """Returns the total number of Circle instances."""
+        return cls.count
+
+    @staticmethod
+    def area(radius: float) -> float:
+        """Calculates area of a circle with given radius."""
+        return math.pi * radius ** 2
+
+c1 = Circle(3)
+c2 = Circle(4)
+print(Circle.get_count())       # Output: 2
+print(Circle.area(5))           # Output: 78.53981633974483
+
+# 3. Implement Inheritance and Method Overriding
+# Problem:
+# Create a base class Animal with a method speak. 
+# Derive a class Dog from Animal and override the speak method to print "Woof!".
+
+class Animal:
+    def speak(self):
+        """Base speak method."""
+        print("Animal speaks")
+
+class Dog(Animal):
+    def speak(self):
+        """Override speak method for Dog."""
+        print("Woof!")
+a = Animal()
+a.speak()  # Output: Animal speaks
+
+d = Dog()
+d.speak()  # Output: Woof!
+
+
+# 1. Design a Simple Hash Function for Strings
+# Problem:
+# Implement a simple hash function that takes a string input and 
+# returns an integer hash value. Use a basic polynomial rolling hash approach.
+
+def simple_hash(s: str, base: int = 31, mod: int = 10**9 + 7) -> int:
+    """
+    Computes a simple polynomial rolling hash for the given string.
+
+    Args:
+    s (str): Input string.
+    base (int): Base multiplier for the polynomial rolling hash.
+    mod (int): Modulus to avoid large numbers.
+
+    Returns:
+    int: Hash value of the string.
+    """
+    hash_value = 0
+    power = 1
+    for char in s:
+        hash_value = (hash_value + (ord(char) - ord('a') + 1) * power) % mod
+        power = (power * base) % mod
+    return hash_value
+
+print(simple_hash("hello"))  # Output: Some integer hash value
+print(simple_hash("world"))  # Output: Different integer hash value
+
+
+# 2. Implement a Custom Hash Map with Separate Chaining
+# Problem:
+# Implement a basic hash map supporting insert, 
+# search, and delete operations using separate chaining (linked lists) for collision resolution
+
+class MyHashMap:
+    def __init__(self, size: int = 1000):
+        """
+        Initialize the hash map with given bucket size.
+        """
+        self.size = size
+        self.buckets = [[] for _ in range(size)]
+
+    def _hash(self, key: int) -> int:
+        """
+        Hash function to map keys to bucket index.
+        """
+        return key % self.size
+
+    def put(self, key: int, value: int) -> None:
+        """
+        Insert or update the key with the given value.
+        """
+        index = self._hash(key)
+        bucket = self.buckets[index]
+        for i, (k, v) in enumerate(bucket):
+            if k == key:
+                bucket[i] = (key, value)
+                return
+        bucket.append((key, value))
+
+    def get(self, key: int) -> int:
+        """
+        Return the value to which the specified key is mapped, or -1 if none.
+        """
+        index = self._hash(key)
+        bucket = self.buckets[index]
+        for k, v in bucket:
+            if k == key:
+                return v
+        return -1
+
+    def remove(self, key: int) -> None:
+        """
+        Remove the mapping for the specified key if it exists.
+        """
+        index = self._hash(key)
+        bucket = self.buckets[index]
+        for i, (k, _) in enumerate(bucket):
+            if k == key:
+                del bucket[i]
+                return
+
+
+hash_map = MyHashMap()
+hash_map.put(1, 100)
+hash_map.put(2, 200)
+print(hash_map.get(1))  # Output: 100
+hash_map.remove(1)
+print(hash_map.get(1))  # Output: -1
+
+# 3. Detect Duplicate Substrings of Size K Using Hashing
+# Problem:
+# Given a string s and an integer k, determine if the string contains any duplicate substring of length k.
+
+# Function Signature:
+
+def has_duplicate_substring(s: str, k: int) -> bool:
+    """
+    Uses rolling hash to detect duplicate substrings of length k in s.
+
+    Args:
+    s (str): Input string.
+    k (int): Length of substrings to check.
+
+    Returns:
+    bool: True if duplicate substring exists, False otherwise.
+    """
+    if k == 0 or k > len(s):
+        return False
+
+    base = 26
+    mod = 2**63 - 1  # large prime modulus
+    hash_set = set()
+    hash_val = 0
+    power = 1
+
+    # Initial hash for first k-length substring
+    for i in range(k):
+        hash_val = (hash_val * base + ord(s[i]) - ord('a')) % mod
+        if i < k - 1:
+            power = (power * base) % mod
+
+    hash_set.add(hash_val)
+
+    for i in range(k, len(s)):
+        # Remove leading char and add trailing char
+        hash_val = ((hash_val - (ord(s[i-k]) - ord('a')) * power) * base + (ord(s[i]) - ord('a'))) % mod
+        if hash_val in hash_set:
+            return True
+        hash_set.add(hash_val)
+
+    return False
+
+print(has_duplicate_substring("banana", 2))  # Output: True ("an" repeats)
+print(has_duplicate_substring("abcdef", 3))  # Output: False
+
+# 1. Find the First Non-Repeating Character in a String
+# Problem:
+# Given a string, find the first character that does not repeat anywhere in the string. 
+# Return its index or -1 if it doesn't exist.
+# Why people fail:
+# Missing edge cases (empty string, all repeating chars) or returning the character instead of the index.
+
+def first_non_repeating_char(s: str) -> int:
+    """
+    Finds the index of the first non-repeating character in the string.
+
+    Args:
+    s (str): Input string.
+
+    Returns:
+    int: Index of first unique char or -1 if none found.
+    """
+    freq = {}
+    for ch in s:
+        freq[ch] = freq.get(ch, 0) + 1
+
+    for i, ch in enumerate(s):
+        if freq[ch] == 1:
+            return i
+    return -1
+
+# Example execution:
+print(first_non_repeating_char("leetcode"))  # Output: 0 ('l')
+print(first_non_repeating_char("aabbcc"))    # Output: -1 (no unique char)
+
+# 2. Reverse Words in a String
+# Problem:
+# Given a string containing words separated by spaces, reverse the order of the words.
+# Why people fail:
+# They don’t handle extra spaces correctly or reverse the characters in words instead of the word order.
+def reverse_words(s: str) -> str:
+    """
+    Reverses the order of words in a string.
+
+    Args:
+    s (str): Input string.
+
+    Returns:
+    str: String with words in reverse order.
+    """
+    words = s.strip().split()
+    return ' '.join(words[::-1])
+
+# Example execution:
+print(reverse_words("the sky is blue"))     # Output: "blue is sky the"
+print(reverse_words("  hello world  "))     # Output: "world hello"
+# 3. Check if a Number is a Power of Two
+# Problem:
+# Given an integer, check if it is a power of two.
+# Why people fail:
+# Not handling zero or negative numbers properly, or using slow methods like loops instead of bitwise ops.
+
+def is_power_of_two(n: int) -> bool:
+    """
+    Checks if n is a power of two.
+
+    Args:
+    n (int): Number to check.
+
+    Returns:
+    bool: True if n is power of two, False otherwise.
+    """
+    return n > 0 and (n & (n - 1)) == 0
+
+# Example execution:
+print(is_power_of_two(16))   # Output: True
+print(is_power_of_two(18))   # Output: False
+print(is_power_of_two(0))    # Output: False
+
+
+# 4. Check if Two Strings are Anagrams
+# Problem:
+# Check if two strings are anagrams (contain the same characters in any order).
+# Why people fail:
+# Forgetting to handle case sensitivity, spaces, or not using efficient solutions.
+def are_anagrams(s1: str, s2: str) -> bool:
+    """
+    Returns True if s1 and s2 are anagrams.
+
+    Args:
+    s1 (str): First string.
+    s2 (str): Second string.
+
+    Returns:
+    bool: True if anagrams, False otherwise.
+    """
+    return sorted(s1) == sorted(s2)
+
+# Example execution:
+print(are_anagrams("listen", "silent"))    # Output: True
+print(are_anagrams("hello", "world"))      # Output: Fals
+
+# 5. Remove Duplicates from a List While Preserving Order
+# Problem:
+# Given a list, remove duplicates but keep the original order of elements.
+# Why people fail:
+# Using set() directly which loses order or inefficiently checking duplicates inside nested loops.
+def remove_duplicates(lst: list) -> list:
+    """
+    Removes duplicates while preserving order.
+
+    Args:
+    lst (list): Input list.
+
+    Returns:
+    list: List without duplicates.
+    """
+    seen = set()
+    result = []
+    for item in lst:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+# Example execution:
+print(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))  # Output: [1, 2, 3, 4, 5]
+print(remove_duplicates(['a', 'b', 'a', 'c']))    # Output: ['a', 'b', 'c']
+
+
+# 1. Valid Parentheses
+# Problem:
+# Given a string containing just the characters '(', ')', '{', '}', '[', and ']', determine if the input string is valid. An input string is valid if:
+
+# Open brackets are closed by the same type of brackets.
+
+# Open brackets are closed in the correct order.
+
+def is_valid_parentheses(s: str) -> bool:
+    """
+    Checks if the input string of brackets is valid.
+
+    Args:
+    s (str): String containing brackets.
+
+    Returns:
+    bool: True if valid, False otherwise.
+    """
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in mapping.values():
+            stack.append(char)
+        elif char in mapping:
+            if not stack or stack.pop() != mapping[char]:
+                return False
+        else:
+            # Ignore non-bracket characters or return False
+            return False
+    return not stack
+
+print(is_valid_parentheses("()[]{}"))  # Output: True
+print(is_valid_parentheses("(]"))      # Output: False
+
+# 2. Min Stack (Stack that returns minimum element in O(1))
+# Problem:
+# Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+# Function Signature:
+class MinStack:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        # Push onto min_stack if empty or val <= current min
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack.append(val)
+
+    def pop(self) -> None:
+        if self.stack:
+            val = self.stack.pop()
+            if val == self.min_stack[-1]:
+                self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1] if self.stack else None
+
+    def get_min(self) -> int:
+        return self.min_stack[-1] if self.min_stack else None
+    
+
+min_stack = MinStack()
+min_stack.push(-2)
+min_stack.push(0)
+min_stack.push(-3)
+print(min_stack.get_min())  # Output: -3
+min_stack.pop()
+print(min_stack.top())      # Output: 0
+print(min_stack.get_min())  # Output: -2
+
+# 3. Evaluate Reverse Polish Notation
+# Problem:
+# Evaluate the value of an arithmetic expression in Reverse Polish Notation. 
+# Valid operators are +, -, *, and /.
+
+def eval_rpn(tokens: List[str]) -> int:
+    """
+    Evaluates the value of an arithmetic expression in Reverse Polish Notation.
+
+    Args:
+    tokens (List[str]): List of tokens (operands and operators).
+
+    Returns:
+    int: Result of expression.
+    """
+    stack = []
+    operators = {'+', '-', '*', '/'}
+
+    for token in tokens:
+        if token not in operators:
+            stack.append(int(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            if token == '+':
+                stack.append(a + b)
+            elif token == '-':
+                stack.append(a - b)
+            elif token == '*':
+                stack.append(a * b)
+            else:
+                # Division truncates toward zero
+                stack.append(int(a / b))
+    return stack[0] if stack else 0
+
+print(eval_rpn(["2", "1", "+", "3", "*"]))      # Output: 9
+print(eval_rpn(["4", "13", "5", "/", "+"]))     # Output: 6
+
+# 2. Min Stack
+# Problem:
+# Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+    
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack.append(val)
+    
+    def pop(self) -> None:
+        if self.stack:
+            val = self.stack.pop()
+            if val == self.min_stack[-1]:
+                self.min_stack.pop()
+    
+    def top(self) -> int:
+        return self.stack[-1] if self.stack else None
+    
+    def get_min(self) -> int:
+        return self.min_stack[-1] if self.min_stack else None
+
+# Example:
+min_stack = MinStack()
+min_stack.push(-2)
+min_stack.push(0)
+min_stack.push(-3)
+print(min_stack.get_min())  # -3
+min_stack.pop()
+print(min_stack.top())      # 0
+print(min_stack.get_min())  # -2
+
+# Example:
+min_stack = MinStack()
+min_stack.push(-2)
+min_stack.push(0)
+min_stack.push(-3)
+print(min_stack.get_min())  # -3
+min_stack.pop()
+print(min_stack.top())      # 0
+print(min_stack.get_min())  # -2
+
+# 3. Evaluate Reverse Polish Notation
+# Problem:
+# Evaluate arithmetic expressions given in Reverse Polish Notation (RPN).
+
+def eval_rpn(tokens: List[str]) -> int:
+    """
+    Evaluate expression in Reverse Polish Notation.
+
+    Args:
+    tokens (List[str]): Tokens in RPN.
+
+    Returns:
+    int: Result of expression.
+    """
+    stack = []
+    ops = {'+', '-', '*', '/'}
+    
+    for token in tokens:
+        if token not in ops:
+            stack.append(int(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            if token == '+':
+                stack.append(a + b)
+            elif token == '-':
+                stack.append(a - b)
+            elif token == '*':
+                stack.append(a * b)
+            else:
+                stack.append(int(a / b))  # truncate towards zero
+    return stack[0]
+
+# Example:
+print(eval_rpn(["2", "1", "+", "3", "*"]))    # 9
+print(eval_rpn(["4", "13", "5", "/", "+"]))   # 6
+
+# 3. Merge Two Sorted Linked Lists
+# Problem:
+# Merge two sorted linked lists and return it as a new sorted list.
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def merge_two_lists(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Merge two sorted linked lists.
+
+    Args:
+    l1 (ListNode): Head of first sorted list.
+    l2 (ListNode): Head of second sorted list.
+
+    Returns:
+    ListNode: Head of merged sorted list.
+    """
+    dummy = ListNode()
+    tail = dummy
+
+    while l1 and l2:
+        if l1.val < l2.val:
+            tail.next = l1
+            l1 = l1.next
+        else:
+            tail.next = l2
+            l2 = l2.next
+        tail = tail.next
+
+    tail.next = l1 if l1 else l2
+    return dummy.next
+
+def print_list(head: ListNode):
+    """
+    Prints linked list in format: val1 -> val2 -> ... -> None
+    """
+    current = head
+    while current:
+        print(current.val, end=" -> ")
+        current = current.next
+    print("None")
+
+# Example usage
+l1 = ListNode(1, ListNode(3, ListNode(5)))
+l2 = ListNode(2, ListNode(4, ListNode(6)))
+merged = merge_two_lists(l1, l2)
+
+print_list(merged)  # Output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> None
+
+
+
+# 1. Design a Scalable URL Shortener
+# Problem:
+# Design a URL shortener service like Bit.ly that converts long URLs into short ones, ensuring scalability and high availability.
+
+import hashlib
+from typing import Optional
+
+# Linked list node class
+class ListNode:
+    def __init__(self, val: int = 0, next: Optional['ListNode'] = None):
+        self.val = val
+        self.next = next
+
+# Function to merge two sorted linked lists
+def merge_two_lists(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    """
+    Merge two sorted linked lists and return the merged sorted list.
+    """
+    dummy = ListNode()
+    current = dummy
+    
+    while l1 and l2:
+        if l1.val < l2.val:
+            current.next = l1
+            l1 = l1.next
+        else:
+            current.next = l2
+            l2 = l2.next
+        current = current.next
+    
+    current.next = l1 if l1 else l2
+    
+    return dummy.next
+
+# Function to print linked list values
+def print_list(head: Optional[ListNode]) -> None:
+    """
+    Print the linked list nodes in order.
+    """
+    current = head
+    while current:
+        print(current.val, end=" -> ")
+        current = current.next
+    print("None")
+
+# URL Shortener class
+class URLShortener:
+    def __init__(self):
+        self.url_mapping = {}
+        self.base_url = "http://short.ly/"
+
+    def shorten(self, long_url: str) -> str:
+        """
+        Shortens a given long URL.
+        """
+        short_hash = hashlib.md5(long_url.encode()).hexdigest()[:6]
+        short_url = self.base_url + short_hash
+        self.url_mapping[short_url] = long_url
+        return short_url
+
+    def resolve(self, short_url: str) -> str:
+        """
+        Resolves a shortened URL to the original long URL.
+        """
+        return self.url_mapping.get(short_url, "URL not found")
+
+# ====== Test the linked list merge ======
+l1 = ListNode(1, ListNode(3, ListNode(5)))
+l2 = ListNode(2, ListNode(4, ListNode(6)))
+
+merged = merge_two_lists(l1, l2)
+print_list(merged)  # Expected output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> None
+
+# ====== Test the URL shortener ======
+url_shortener = URLShortener()
+short_url = url_shortener.shorten("https://www.example.com")
+print("Shortened URL:", short_url)
+print("Original URL:", url_shortener.resolve(short_url))
+
+
+
+
+# 2. Implement an LRU Cache
+# Problem:
+# Design and implement a Least Recently Used (LRU) cache that supports get and put operations with O(1) time complexity.
+
+# Solution
+
+from collections import OrderedDict
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        """
+        Initializes the LRUCache with a given capacity.
+
+        Args:
+        capacity (int): The maximum number of items the cache can hold.
+        """
+        self.cache = OrderedDict()
+        self.capacity = capacity
+
+    def get(self, key: int) -> int:
+        """
+        Retrieves the value associated with the key if it exists in the cache.
+
+        Args:
+        key (int): The key to retrieve.
+
+        Returns:
+        int: The value associated with the key, or -1 if not found.
+        """
+        if key not in self.cache:
+            return -1
+        else:
+            self.cache.move_to_end(key)
+            return self.cache[key]
+
+    def put(self, key: int, value: int) -> None:
+        """
+        Inserts or updates the value associated with the key in the cache.
+
+        Args:
+        key (int): The key to insert/update.
+        value (int): The value to associate with the key.
+        """
+        if key in self.cache:
+            self.cache.move_to_end(key)
+        self.cache[key] = value
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)
+
+cache = LRUCache(2)
+cache.put(1, 1)
+cache.put(2, 2)
+print(cache.get(1))  # Output: 1
+cache.put(3, 3)      # Evicts key 2
+print(cache.get(2))  # Output: -1 (not found)
+
+
+# 3. Reverse a Linked List
+# Problem:
+# Reverse a singly linked list.
+
+# Solution:
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def reverse_linked_list(head: ListNode) -> ListNode:
+    """
+    Reverses a singly linked list.
+
+    Args:
+    head (ListNode): The head node of the linked list.
+
+    Returns:
+    ListNode: The new head node of the reversed linked list.
+    """
+    prev = None
+    current = head
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
+    return prev
+
+# Creating a linked list: 1 -> 2 -> 3 -> None
+head = ListNode(1, ListNode(2, ListNode(3)))
+reversed_head = reverse_linked_list(head)
+# Output: 3 -> 2 -> 1 -> None
+
+# 4. Detect Cycle in a Linked List
+# Problem:
+# Determine if a singly linked list has a cycle.
+
+# Solution:
+
+def has_cycle(head: ListNode) -> bool:
+    """
+    Detects if a singly linked list has a cycle.
+
+    Args:
+    head (ListNode): The head node of the linked list.
+
+    Returns:
+    bool: True if the list has a cycle, False otherwise.
+    """
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
+
+# Creating a linked list with a cycle: 1 -> 2 -> 3 -> 4 -> 2 (cycle)
+head = ListNode(1, ListNode(2, ListNode(3, ListNode(4))))
+head.next.next.next.next = head.next  # Creating a cycle
+print(has_cycle(head))  # Output: True
+
+# 5. Merge Two Sorted Linked Lists
+# Problem:
+# Merge two sorted singly linked lists into a single sorted list.
+
+# Solution:
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def merge_sorted_lists(l1: ListNode, l2: ListNode) -> ListNode:
+    """
+    Merges two sorted singly linked lists into one sorted linked list.
+
+    Args:
+    l1 (ListNode): Head of the first sorted linked list.
+    l2 (ListNode): Head of the second sorted linked list.
+
+    Returns:
+    ListNode: Head of the merged sorted linked list.
+    """
+    dummy = ListNode()  # Dummy head to simplify edge cases
+    current = dummy
+
+    while l1 and l2:
+        if l1.val < l2.val:
+            current.next = l1
+            l1 = l1.next
+        else:
+            current.next = l2
+            l2 = l2.next
+        current = current.next
+
+    # Attach remaining nodes (only one of these will be non-empty)
+    current.next = l1 if l1 else l2
+
+    return dummy.next
+
+ 
+def print_list(head: ListNode) -> None:
+    """
+    Prints the values in a linked list.
+
+    Args:
+    head (ListNode): Head of the linked list.
+    """
+    while head:
+        print(head.val, end=" -> ")
+        head = head.next
+    print("None")
+
+# List 1: 1 -> 3 -> 5
+l1 = ListNode(1, ListNode(3, ListNode(5)))
+
+# List 2: 2 -> 4 -> 6
+l2 = ListNode(2, ListNode(4, ListNode(6)))
+
+# Merge them
+merged_head = merge_sorted_lists(l1, l2)
+
+# Output: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> None
+print_list(merged_head)
+
+
+#  1. Design an LRU Cache
+# 📚 Data Structures: HashMap + Doubly Linked List
+
+# Problem:
+# Design a data structure that supports get(key) and put(key, value) in O(1) time.
+
+class Node:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+        self.prev = None
+        self.next = None
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        """
+        Initializes the LRU cache with a given capacity.
+        """
+        self.cache = {}
+        self.capacity = capacity
+        self.head = Node(0, 0)  # dummy head
+        self.tail = Node(0, 0)  # dummy tail
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def _remove(self, node):
+        """Remove node from the linked list."""
+        prev, nxt = node.prev, node.next
+        prev.next = nxt
+        nxt.prev = prev
+
+    def _add(self, node):
+        """Add node right after head."""
+        node.next = self.head.next
+        node.prev = self.head
+        self.head.next.prev = node
+        self.head.next = node
+
+    def get(self, key: int) -> int:
+        """
+        Return the value of the key if exists, else -1.
+        """
+        if key in self.cache:
+            node = self.cache[key]
+            self._remove(node)
+            self._add(node)
+            return node.val
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        """
+        Update or insert the value. Remove LRU item if capacity is exceeded.
+        """
+        if key in self.cache:
+            self._remove(self.cache[key])
+        node = Node(key, value)
+        self.cache[key] = node
+        self._add(node)
+        if len(self.cache) > self.capacity:
+            lru = self.tail.prev
+            self._remove(lru)
+            del self.cache[lru.key]
+
+lru = LRUCache(2)
+lru.put(1, 1)
+lru.put(2, 2)
+print(lru.get(1))   # Output: 1
+lru.put(3, 3)       # Evicts key 2
+print(lru.get(2))   # Output: -1
+
+#  2. Merge K Sorted Linked Lists
+# 📚 Data Structures: Min-Heap (Priority Queue)
+
+# Problem:
+# Merge k sorted linked lists into a single sorted linked list.
+
+import heapq
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+    
+    def __lt__(self, other):
+        return self.val < other.val
+
+def merge_k_lists(lists: list) -> ListNode:
+    """
+    Merges k sorted linked lists into one sorted list.
+
+    Args:
+    lists (List[ListNode]): List of k ListNode heads.
+
+    Returns:
+    ListNode: Head of merged linked list.
+    """
+    min_heap = []
+    
+    for node in lists:
+        if node:
+            heapq.heappush(min_heap, node)
+
+    dummy = ListNode()
+    current = dummy
+
+    while min_heap:
+        smallest = heapq.heappop(min_heap)
+        current.next = smallest
+        current = current.next
+        if smallest.next:
+            heapq.heappush(min_heap, smallest.next)
+
+    return dummy.next
+
+# List 1: 1 -> 4 -> 5
+# List 2: 1 -> 3 -> 4
+# List 3: 2 -> 6
+
+l1 = ListNode(1, ListNode(4, ListNode(5)))
+l2 = ListNode(1, ListNode(3, ListNode(4)))
+l3 = ListNode(2, ListNode(6))
+merged = merge_k_lists([l1, l2, l3])
+
+# Print merged list
+def print_list(node):
+    while node:
+        print(node.val, end=" -> ")
+        node = node.next
+    print("None")
+
+print_list(merged)
+
+# 3. Serialize and Deserialize a Binary Tree
+# 📚 Data Structures: Binary Tree + Queue
+
+# Problem:
+# Design methods to serialize a binary tree into a string and deserialize it back to the tree.
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def serialize(root: TreeNode) -> str:
+    """
+    Encodes a tree to a single string.
+
+    Args:
+    root (TreeNode): Root of the tree.
+
+    Returns:
+    str: Serialized string.
+    """
+    if not root:
+        return "null,"
+    return str(root.val) + "," + serialize(root.left) + serialize(root.right)
+
+def deserialize(data: str) -> TreeNode:
+    """
+    Decodes your encoded data to tree.
+
+    Args:
+    data (str): Serialized tree string.
+
+    Returns:
+    TreeNode: Root of the tree.
+    """
+    def helper(nodes):
+        val = nodes.pop(0)
+        if val == "null":
+            return None
+        root = TreeNode(int(val))
+        root.left = helper(nodes)
+        root.right = helper(nodes)
+        return root
+
+    nodes = data.split(",")[:-1]  # Remove last empty item
+    return helper(nodes)
+
+tree = TreeNode(1, TreeNode(2), TreeNode(3, TreeNode(4), TreeNode(5)))
+
+data = serialize(tree)
+print(data)  # Example: "1,2,null,null,3,4,null,null,5,null,null,"
+
+restored = deserialize(data)
+print(serialize(restored))  # Should match the original serialized string
+
+
+
+
+
+# 3. Design Tic-Tac-Toe
+# Problem: Design a Tic-Tac-Toe game that supports an n x n board and determines the winner after each move.
+# Medium
+
+# Python Implementation:
+
+class TicTacToe:
+    def __init__(self, n: int):
+        self.board = [[0] * n for _ in range(n)]
+        self.n = n
+
+    def move(self, row: int, col: int, player: int) -> int:
+        self.board[row][col] = player
+        if self.check_winner(row, col, player):
+            return player
+        return 0
+
+    def check_winner(self, row: int, col: int, player: int) -> bool:
+        # Check row
+        if all(self.board[row][i] == player for i in range(self.n)):
+            return True
+        # Check column
+        if all(self.board[i][col] == player for i in range(self.n)):
+            return True
+        # Check diagonal
+        if row == col and all(self.board[i][i] == player for i in range(self.n)):
+            return True
+        # Check anti-diagonal
+        if row + col == self.n - 1 and all(self.board[i][self.n - 1 - i] == player for i in range(self.n)):
+            return True
+        return False
+
+game = TicTacToe(3)
+print(game.move(0, 0, 1))  # Output: 0 (no winner)
+print(game.move(0, 2, 2))  # Output: 0 (no winner)
+print(game.move(2, 2, 1))  # Output: 0 (no winner)
+print(game.move(1, 1, 2))  # Output: 0 (no winner)
+print(game.move(2, 0, 1))  # Output: 0 (no winner)
+print(game.move(1, 0, 2))  # Output: 0 (no winner)
+print(game.move(2, 1, 1))  # Output: 1 (player 1 wins)
+
+# 4. Design Snake Game
+# Problem: Design a Snake game that is played on a device with screen size height x width. 
+# The snake moves in a grid and grows in length when it eats food. The game ends if the snake runs into itself
+# or the wall.
+
+from collections import deque
+
+class SnakeGame:
+    def __init__(self, width: int, height: int, food: list):
+        self.width = width
+        self.height = height
+        self.food = deque(food)
+        self.snake = deque([(0, 0)])
+        self.snake_set = {(0, 0)}
+        self.directions = {'U': (-1, 0), 'D': (1, 0), 'L': (0, -1), 'R': (0, 1)}
+        self.score = 0
+
+    def move(self, direction: str) -> int:
+        head = self.snake[0]
+        new_head = (head[0] + self.directions[direction][0], head[1] + self.directions[direction][1])
+
+        # Check if snake hits the wall or itself
+        if (new_head[0] < 0 or new_head[0] >= self.height or
+            new_head[1] < 0 or new_head[1] >= self.width or
+            new_head in self.snake_set):
+            return -1
+
+        # Check if snake eats food
+        if self.food and new_head == self.food[0]:
+            self.snake.appendleft(new_head)
+            self.snake_set.add(new_head)
+            self.food.popleft()
+            self.score += 1
+        else:
+            tail = self.snake.pop()
+            self.snake_set.remove(tail)
+            self.snake.appendleft(new_head)
+            self.snake_set.add(new_head)
+
+        return self.score
+
+game = SnakeGame(3, 3, [(0, 1), (1, 2)])
+print(game.move('R'))  # Output: 0
+print(game.move('D'))  # Output: 0
+
+ 
+
