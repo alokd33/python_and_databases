@@ -2362,6 +2362,127 @@ print(merge_intervals([[1,3],[2,6],[8,10],[15,18]]))
 # Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 # Solution:
+def safe_pop(stack):
+    """
+    Safely pops the top item from the stack.
+
+    This function avoids errors that occur when trying to pop from an empty list.
+    It uses a conditional expression to return the top element if available,
+    or a sentinel character '#' if the stack is empty.
+
+    Parameters
+    ----------
+    stack : list
+        A list representing the stack of brackets.
+
+    Returns
+    -------
+    str
+        The last item in the stack (using stack.pop()) if the stack is non-empty,
+        otherwise '#' as a placeholder to indicate an unmatched or missing opening bracket.
+
+    Expression Breakdown
+    --------------------
+    top = stack.pop() if stack else '#'
+
+    - `stack.pop()`: Removes and returns the top (last) element of the stack.
+    - `if stack`: Checks if the stack is not empty (truthy check).
+    - `else '#'`: If the stack is empty, return '#' instead of calling pop()
+      to avoid an IndexError.
+
+    This is a key safety measure in bracket-matching problems where
+    we need to avoid popping from an empty stack.
+    # Step 1: Check if the stack is non-empty
+    if stack:
+    # Step 2: Since the stack is not empty, pop the top item
+    top = stack.pop()
+    else:
+    # Step 3: Stack is empty, assign a placeholder value
+    top = '#'
+    """
+    return stack.pop() if stack else '#'
+
+
+def safe_pop(stack):
+    """
+    Safely pops the top element from a stack (list).
+
+    If the stack is not empty, returns the top element using pop().
+    If the stack is empty, returns a placeholder '#'.
+
+    Parameters
+    ----------
+    stack : list
+        A list representing the stack.
+
+    Returns
+    -------
+    any
+        The popped element if the stack is non-empty, or '#' as a fallback.
+    """
+    # Step 1: Check if the stack is non-empty
+    if stack:
+        # Step 2: Pop the top item from the stack
+        top = stack.pop()
+    else:
+        # Step 3: Stack is empty, return a placeholder
+        top = '#'
+
+    return top
+
+
+# Test Cases
+stack1 = ['(', '{']
+result1 = safe_pop(stack1)
+print("Test 1 (Non-empty stack):", result1)  # Expected: '{'
+
+def is_valid_parentheses(s: str) -> bool:
+    """
+    Determines if the input string has valid matching parentheses.
+
+    A valid string must meet the following conditions:
+    - Every opening bracket must have a corresponding closing bracket of the same type.
+    - Brackets must be closed in the correct order (e.g., "([])" is valid, but "(]" is not).
+
+    Parameters
+    ----------
+    s : str
+        A string containing only the characters '(', ')', '{', '}', '[' and ']'.
+
+    Returns
+    -------
+    bool
+        True if the parentheses are valid and balanced, False otherwise.
+    """
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in mapping:
+            # Step 1: Check if the stack is non-empty
+            if stack:
+                # Step 2: Since the stack is not empty, pop the top item
+                top = stack.pop()
+            else:
+                # Step 3: Stack is empty, assign a placeholder value
+                top = '#'
+
+            # Step 4: Compare the popped value with expected opening bracket
+            if mapping[char] != top:
+                return False
+        else:
+            # Push opening brackets to stack
+            stack.append(char)
+
+    # Return True only if no unmatched brackets remain
+    return not stack
+
+a = is_valid_parentheses("{}")
+print(a)
+a = is_valid_parentheses("{")
+print(a)
+
+
 
 def is_valid_parentheses(s: str) -> bool:
     """
