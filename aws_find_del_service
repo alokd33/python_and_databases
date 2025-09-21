@@ -1,0 +1,56 @@
+aws resourcegroupstaggingapi get-resources --region us-east-1
+
+
+aws s3 rb s3://personalizedemoarnavdadarya --force
+aws s3 rb s3://rag-pdf-documents-dev-alok-2024 --force
+aws s3 rb s3://personalizedemoarnavdadarya1 --force
+
+
+aws secretsmanager delete-secret \
+  --secret-id dev/ai-api-keys-zHyINe \
+  --force-delete-without-recovery
+
+
+aws cloudformation delete-stack --stack-name PersonalizeDemo
+
+
+for region in $(aws ec2 describe-regions --query "Regions[].RegionName" --output text); do
+  echo "Checking $region..."
+  aws resourcegroupstaggingapi get-resources --region $region --output text
+done
+
+
+aws cloudformation delete-stack --stack-name databricks-workspace-stack-34b00 --region us-west-1
+aws cloudformation delete-stack --stack-name databricks-workspace-stack --region us-west-1
+
+
+aws s3 rb s3://rag-pdf-documents-dev-alok-2024 --force --region us-east-1
+
+aws s3 rm s3://rag-pdf-documents-dev-alok-2024 --region us-east-1 --recursive --include "*" --versions
+aws s3 rb s3://rag-pdf-documents-dev-alok-2024 --region us-east-1
+
+
+while true; do
+  versions=$(aws s3api list-object-versions --bucket rag-pdf-documents-dev-alok-2024 --region us-east-1 --output json)
+  if [ "$(echo $versions | jq '.Versions | length')" -eq 0 ] && [ "$(echo $versions | jq '.DeleteMarkers | length')" -eq 0 ]; then
+    break
+  fi
+  echo $versions | jq '{Objects: (.Versions[]?, .DeleteMarkers[]?) | [{Key: .Key, VersionId: .VersionId}]}' > delete.json
+  aws s3api delete-objects --bucket rag-pdf-documents-dev-alok-2024 --region us-east-1 --delete file://delete.json
+done
+aws s3 rb s3://rag-pdf-documents-dev-alok-2024 --region us-east-1
+
+
+
+
+aws secretsmanager delete-secret \
+  --secret-id dev/ai-api-keys-zHyINe \
+  --region us-east-1 \
+  --force-delete-without-recovery
+
+
+
+aws secretsmanager describe-secret \
+  --secret-id dev/ai-api-keys-zHyINe \
+  --region us-east-1
+  
