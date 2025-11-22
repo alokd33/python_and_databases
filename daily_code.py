@@ -1,3 +1,52 @@
+def str_char_count(str1):
+    dict1 = {}
+    for i in str1:
+        if i in dict1:
+            dict1[i] =  dict1[i] + 1
+        else :
+            dict1[i] = 1
+    str2 = "".join(str(k)+str(v) for k,v in dict1.items())
+    return str2
+out = str_char_count("aaabbbzq")
+print(out)
+
+str1 = "aaabbbzq"
+str3 = [1,2,3,4, "a"]
+
+
+# Two string are anagram
+# "listen" and "silent" → anagrams
+# "aaabbbzq" and "bbzaqaba" → anagrams
+# "hello" and "bello" → not anagrams
+
+def find_anagram_str(str1, str2):
+    d1 = {}
+    d2 = {}
+    if len(str1) != len(str2):
+        return False
+    else :
+        for i in str1 :
+            if i in d1:
+                d1[i] = d1[i] + 1
+            else :
+                d1[i] = 1
+        for i in str2 :
+            if i in d2 :
+                d2[i] = d2[i] + 1
+            else :
+                d2[i] = 1
+    if d1 == d2 :
+        return True
+    else :
+        return False
+
+
+a = find_anagram_str("listen", "silent" )
+a = find_anagram_str("abc", "abd" )
+a = find_anagram_str("aaabbbzq", "bbzaqaba" )
+print(a)
+
+
 def reverse_str(str):
     reverser_string = str[::-1]
     return reverser_string
