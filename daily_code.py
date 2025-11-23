@@ -53,6 +53,137 @@ def reverse_str(str):
 output = reverse_str("ABC")
 print(output)
 
+
+# This problem requires finding the first and last position of a given target value inside a sorted integer array. 
+# Because the array is sorted, all occurrences of the target appear next to each other in a continuous block. 
+# Instead of scanning the entire list, we use a binary search–based approach to efficiently locate the leftmost 
+# and rightmost indices of the target in O(log n) time. The goal is to return these two positions as a pair. 
+# If the target does not exist in the array, the result should be [-1, -1]. 
+# This problem is known as “Find First and Last Position of Element in Sorted Array.”
+
+# Example:
+# Input: nums = [5, 7, 7, 8, 8, 10], target = 8
+# Output: [3, 4]
+
+# This means the number 8 first appears at index 3 and last appears at index 4.
+
+from typing import List
+
+# MEMORY NOTE:
+# --------------------------------------------
+# FIRST occurrence  → move RIGHT pointer LEFT
+# LAST occurrence   → move LEFT pointer RIGHT
+#
+# Easy Rhyme:
+#   "Go LEFT to find FIRST"
+#   "Go RIGHT to find LAST"
+#
+# Why?
+# When nums[mid] == target:
+#   • For FIRST → check earlier side → right = mid - 1
+#   • For LAST  → check later side  → left = mid + 1
+# --------------------------------------------
+
+
+def find_first(nums: List[int], target: int) -> int:
+    """
+    Return the first (leftmost) index of target in nums.
+    If not found, return -1.
+
+    POINTER MEMORY:
+    - When target found → move RIGHT pointer LEFT
+    - (Because we want the earliest/leftmost index)
+    """
+    left, right = 0, len(nums) - 1
+    first_pos = -1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if nums[mid] == target:
+            first_pos = mid          # found a match
+            right = mid - 1          # 👉 move RIGHT pointer LEFT (search earlier)
+        elif nums[mid] < target:
+            left = mid + 1           # go RIGHT
+        else:
+            right = mid - 1          # go LEFT
+
+    return first_pos
+
+
+def find_last(nums: List[int], target: int) -> int:
+    """
+    Return the last (rightmost) index of target in nums.
+    If not found, return -1.
+
+    POINTER MEMORY:
+    - When target found → move LEFT pointer RIGHT
+    - (Because we want the latest/rightmost index)
+    """
+    left, right = 0, len(nums) - 1
+    last_pos = -1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if nums[mid] == target:
+            last_pos = mid           # found a match
+            left = mid + 1           # 👉 move LEFT pointer RIGHT (search later)
+        elif nums[mid] < target:
+            left = mid + 1           # go RIGHT
+        else:
+            right = mid - 1          # go LEFT
+
+    return last_pos
+
+
+def search_range(nums: List[int], target: int) -> List[int]:
+    """
+    Returns [first_position, last_position] of target in sorted nums.
+    If target is not found, returns [-1, -1].
+
+    High-Level Idea:
+    - Use binary search to find FIRST index
+    - Use binary search to find LAST index
+    - These are two mirror operations
+    """
+    first = find_first(nums, target)
+    if first == -1:
+        return [-1, -1]              # target not found at all
+
+    last = find_last(nums, target)
+    return [first, last]
+
+
+# Example usage
+if __name__ == "__main__":
+    print(search_range([5,7,7,8,8,10], 8))   # [3,4]
+    print(search_range([1,2,3], 2))          # [1,1]
+    print(search_range([2], 2))              # [0,0]
+    print(search_range([1,2,3], 5))          # [-1,-1]
+
+
+# kth largest number in the array
+arr1 = [4,2,9,7,5,6,7,1,3]
+# k = 4
+def kth_largest(arr, k):
+    for i in range(k-1) :
+        arr.remove(max(arr))
+    return max(arr)
+
+a = kth_largest(arr1, 4)
+print(a)
+
+
+arr1 = [4,2,9,7,5,6,7,1,3]
+def kth_largest(arr, k):
+    n = len(arr)
+    arr.sort()
+    return arr[n-k]
+a = kth_largest(arr1, 4)
+print(a)
+
+
 # =============================================
 # PYTHON DICTIONARY CHEAT SHEET
 # =============================================
