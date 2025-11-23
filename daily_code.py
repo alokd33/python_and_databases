@@ -1,3 +1,5 @@
+https://gist.github.com/syphh/173172ec9a4a1376e5096a187ecbddc9
+
 def str_char_count(str1):
     dict1 = {}
     for i in str1:
