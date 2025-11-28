@@ -3762,6 +3762,13 @@ def is_valid_parentheses(s: str) -> bool:
             return False
     return not stack
 
+
+# By the end of the loop: return not stack details
+# If the string is valid → every opening bracket must have been matched and popped
+# stack becomes [] → not stack = True
+# If the string is invalid → some opening brackets remain unmatched
+# stack becomes something like ['(', '['] → not stack = False
+
 print(is_valid_parentheses("()[]{}"))  # Output: True
 print(is_valid_parentheses("(]"))      # Output: False
 
