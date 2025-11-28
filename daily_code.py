@@ -3716,6 +3716,19 @@ def remove_duplicates(lst: list) -> list:
 print(remove_duplicates([1, 2, 2, 3, 4, 4, 5]))  # Output: [1, 2, 3, 4, 5]
 print(remove_duplicates(['a', 'b', 'a', 'c']))    # Output: ['a', 'b', 'c']
 
+#Cleaner Equivalent Code (No unnecessary placeholder)
+def is_valid_parentheses(s: str) -> bool:
+    stack = []
+    mapping = {')': '(', '}': '{', ']': '['}
+
+    for char in s:
+        if char in mapping:  # closing bracket
+            if not stack or stack.pop() != mapping[char]:
+                return False
+        else:
+            stack.append(char)  # opening bracket
+
+    return not stack
 
 # 1. Valid Parentheses
 # Problem:
