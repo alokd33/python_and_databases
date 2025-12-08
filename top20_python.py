@@ -62,3 +62,46 @@ a = sum_two_target(target, arr)
 print(a)
 #[0, 2]
 
+def str_are_anagram(str1, str2):
+    """
+    Input: s1 = “geeks”  s2 = “kseeg”
+    Output: true
+    Explanation: Both the string have same characters with same frequency. So, they are anagrams.
+
+    Input: s1 = "allergy", s2 = "allergyy"
+    Output: false
+    Explanation: Although the characters are mostly the same, s2 contains an extra 'y' character.
+     Since the frequency of characters differs, the strings are not anagram
+    """
+    if len(str1) != len(str2) :
+        return False
+    d1 = {}
+    d2 = {}
+    for i in str1:
+        if i in d1 :
+            d1[i] = d1[i] + 1
+        else:
+            d1[i] = 1
+    for j in str2:
+        if j in d2 :
+            d2[j] = d2[j] + 1
+        else:
+            d2[j] = 1
+    print("D1 is:", d1 ,"and D2 is:", d2)
+    # dict sort by key
+    sorted_d1_by_key = dict(sorted(d1.items()))
+    sorted_d1_string = "".join( str(k) + str(v) for k,v in sorted(d1.items()))
+    sorted_d2_string = "".join(str(k) + str(v) for k, v in sorted(d2.items()))
+    print("sorted_d1_by_key, sorted_d1_string, sorted_d2_string", sorted_d1_by_key, sorted_d1_string, sorted_d2_string)
+    sorted_d1_by_value = dict(sorted(d1.items(), key= lambda x:x[1]))
+    print("sorted_d1_by_vale:", sorted_d1_by_value)
+    if d1 == d2 :
+        return True
+    else :
+        return False
+a = str_are_anagram("allergy", "allergyy")
+print(a)
+#False
+b = str_are_anagram("geeks", "kseeg")
+print(b)
+# True
