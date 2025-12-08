@@ -40,3 +40,25 @@ str1 = "abcabc"
 a = strcharcount(str1)
 print(a)
 #a2b2c2
+
+
+def sum_two_target(target, arr):
+    map_number = {}
+    for index, val in enumerate(arr) :
+        complement = target - val
+        if complement in map_number :
+            return [map_number[complement], index]
+
+        map_number[val] = index
+
+
+arr = [2, 7, 11, 15]
+target = 9
+
+arr = [2, 7, 11, 15]
+target = 13
+
+a = sum_two_target(target, arr)
+print(a)
+#[0, 2]
+
