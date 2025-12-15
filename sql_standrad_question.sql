@@ -1,5 +1,28 @@
 https://console.neon.tech/app/org-morning-tree-78682112/projects
 
+--SELECT
+--    EXTRACT(YEAR FROM your_date_column) AS year_value,
+--    EXTRACT(MONTH FROM your_date_column) AS month_value
+--FROM
+--    your_table;
+
+--SELECT
+--    DATE_PART('year', your_date_column) AS year_value,
+--    DATE_PART('month', your_date_column) AS month_value
+--FROM
+--    your_table;
+
+--SELECT
+--    TO_CHAR(your_date_column, 'YYYY-MM') AS year_month_text,
+--    TO_CHAR(your_date_column, 'Month YYYY') AS year_month_formatted
+--FROM
+--    your_table;
+--
+--SELECT
+--    DATE_TRUNC('month', your_date_column)::date AS first_day_of_month
+--FROM
+--    your_table;
+
 (base) Alok-ka-MacBook-Pro:~ alokdadarya$ brew services list
 Name          Status  User        File
 neo4j         stopped alokdadarya ~/Library/LaunchAgents/homebrew.mxcl.neo4j.plist
