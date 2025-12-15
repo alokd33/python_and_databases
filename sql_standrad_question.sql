@@ -1,5 +1,18 @@
 https://console.neon.tech/app/org-morning-tree-78682112/projects
 
+-- Summary of Defaults
+-- Keyword	Full Form	Meaning
+-- Default	ASC (Ascending)	Sorts from lowest value to highest value (A to Z, 1 to 10, oldest date to newest date).
+-- DESC	DESC (Descending)	Sorts from highest value to lowest value (Z to A, 10 to 1, newest date to oldest date).
+-- Example of Default Behavior
+-- The following two queries produce the exact same result:
+-- sql
+-- -- Explicitly states ASC, but this is the default
+-- SELECT first_name FROM employees ORDER BY first_name ASC;
+
+-- -- Default behavior (same as above)
+-- SELECT first_name FROM employees ORDER BY first_name;
+
 --SELECT
 --    EXTRACT(YEAR FROM your_date_column) AS year_value,
 --    EXTRACT(MONTH FROM your_date_column) AS month_value
