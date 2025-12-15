@@ -951,6 +951,19 @@ JOIN months m1 ON m1.customer_id = c.customer_id AND m1.month_label = 'march'
 JOIN months m2 ON m2.customer_id = c.customer_id AND m2.month_label = 'april'
 ORDER BY c.customer_id;
 
+
+SELECT
+  c.customer_id,
+  c.customer_name
+FROM ecom.customers c
+JOIN ecom.orders o
+  ON o.customer_id = c.customer_id
+WHERE o.order_date >= DATE '2024-03-01'
+  AND o.order_date <  DATE '2024-05-01'
+GROUP BY c.customer_id, c.customer_name
+HAVING COUNT(DISTINCT DATE_TRUNC('month', o.order_date)) = 2
+ORDER BY c.customer_id;
+
 Expected output:
 customer_id | customer_name
 ----------- | -------------
