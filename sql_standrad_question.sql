@@ -895,6 +895,27 @@ JOIN ecom.orders o ON o.customer_id = c.customer_id
 GROUP BY c.customer_id, c.customer_name
 ORDER BY c.customer_id;
 
+select 
+customer_id,
+customer_name,
+first_order_date,
+last_order_date, 
+order_count
+from 
+(select 
+o.customer_id, 
+c.customer_name,
+o.order_id,
+o.order_date,
+min(order_date) over(partition by o.customer_id ) as first_order_date,
+max(order_date) over(partition by o.customer_id ) as last_order_date,
+count(order_id) over(partition by o.customer_id) as order_count,
+row_number() over(partition by o.customer_id) as row_num_by_cust
+from ecom.orders o 
+inner join ecom.customers c on o.customer_id = c.customer_id 
+) t1
+where row_num_by_cust = 1
+
 Expected output:
 customer_id | customer_name   | first_order_date       | last_order_date        | order_count
 ----------- | --------------- | ---------------------- | ---------------------- | -----------
