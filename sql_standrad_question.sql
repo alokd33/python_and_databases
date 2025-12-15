@@ -1030,6 +1030,25 @@ JOIN order_sums os ON os.customer_id = c.customer_id
 WHERE c.total_purchases <> os.total_spent
 ORDER BY c.customer_id;
 
+select 
+customer_id,
+customer_name,total_purchases,total_spent
+from 
+(select
+o.customer_id,
+c.customer_name,
+c.total_purchases, 
+sum(o.total_amount ) as total_spent
+from 
+ecom.orders o 
+inner join ecom.customers c 
+on o.customer_id = c.customer_id 
+group by o.customer_id,
+c.customer_name, c.total_purchases
+order by o.customer_id
+) t1 
+where total_purchases !=total_spent
+
 Expected output:
 customer_id | customer_name   | total_purchases | total_spent
 ----------- | --------------- | --------------- | ----------
