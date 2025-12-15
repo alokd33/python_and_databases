@@ -852,6 +852,21 @@ CROSS JOIN grand_total g
 JOIN ecom.customers cu ON cu.customer_id = c.customer_id
 ORDER BY pct_of_revenue DESC;
 
+
+select customer_id, customer_name, total_spent, pct_of_revenue from 
+(select 
+o.customer_id, 
+c.customer_name,
+sum(o.total_amount) over(partition by o.customer_id)  as total_spent, 
+round(((sum(o.total_amount) over(partition by o.customer_id))/(sum(o.total_amount) over()))*100,2) as pct_of_revenue,
+row_number() over(partition by o.customer_id) as row_number_customer
+from ecom.orders o
+inner join ecom.customers c on c.customer_id = o.customer_id 
+) t1
+where row_number_customer = 1
+order by pct_of_revenue desc
+
+
 Expected output (rounded):
 customer_id | customer_name   | total_spent | pct_of_revenue
 ----------- | --------------- | ----------- | --------------
