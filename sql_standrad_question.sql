@@ -5,6 +5,7 @@ https://console.neon.tech/app/org-morning-tree-78682112/projects
 -- Default	ASC (Ascending)	Sorts from lowest value to highest value (A to Z, 1 to 10, oldest date to newest date).
 -- DESC	DESC (Descending)	Sorts from highest value to lowest value (Z to A, 10 to 1, newest date to oldest date).
 -- Example of Default Behavior
+-- Alok Notes : Lead default order by ASC null last, leg default order by null first
 -- The following two queries produce the exact same result:
 -- sql
 -- -- Explicitly states ASC, but this is the default
