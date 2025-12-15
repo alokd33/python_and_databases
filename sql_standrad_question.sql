@@ -1,3 +1,5 @@
+https://console.neon.tech/app/org-morning-tree-78682112/projects
+
 (base) Alok-ka-MacBook-Pro:~ alokdadarya$ brew services list
 Name          Status  User        File
 neo4j         stopped alokdadarya ~/Library/LaunchAgents/homebrew.mxcl.neo4j.plist
