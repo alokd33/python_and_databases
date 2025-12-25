@@ -1359,3 +1359,34 @@ VALUES
     (1, '2023-04-15 14:30:00', 500.00, 'Mouse'),
     (2, '2023-05-01 09:15:00', 2000.00, 'Desktop'),
     (3, '2023-05-15 11:45:00', 750.00, 'Keyboard');
+
+-- Nth Higest salary
+-- --+-------------+------+
+-- | Column Name | Type |
+-- +-------------+------+
+-- | id          | int  |
+-- | salary      | int  |
+-- +-------------+------+
+-- id is the primary key (column with unique values) for this table.
+-- Each row of this table contains information about the salary of an employee.
+ 
+-- Write a solution to find the nth highest distinct salary from the Employee table. If there are less than n distinct salaries, return null.
+-- The result format is in the following example.
+
+
+CREATE OR REPLACE FUNCTION NthHighestSalary(N INT) RETURNS TABLE (Salary INT) AS $$
+BEGIN
+  IF n IS NULL OR n <= 0 THEN
+    RETURN;
+  END IF;
+
+  RETURN QUERY (
+    select a.salary from 
+    (select e.salary, 
+    dense_rank() over (order by e.salary desc) r 
+    from Employee e) a
+    where a.r = n
+    limit 1
+  );
+END;
+$$ LANGUAGE plpgsql;
